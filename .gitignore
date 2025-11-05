@@ -1,0 +1,8 @@
+/.nitro/
+/.vercel/
+/.wrangler/
+/artifacts/
+/build/
+/dist/
+/node_modules/
+/server/resources/SubtitleIndex.json.gzip
