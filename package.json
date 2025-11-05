@@ -1,0 +1,35 @@
+{
+	"name": "jerma-subtitle-search-server",
+	"version": "1.0.0",
+	"type": "module",
+	"private": true,
+	"author": {
+		"name": "Bergbok",
+		"url": "https://github.com/Bergbok"
+	},
+	"homepage": "https://search.jerma.io",
+	"repository": "github.com:JermaSites/Jerma-Subtitle-Search-Server",
+	"bugs": "https://github.com/JermaSites/Jerma-Subtitle-Search-Server/issues",
+	"simple-git-hooks": {
+		"pre-commit": "bun pretty-quick --staged"
+	},
+	"scripts": {
+		"build": "nitro build",
+		"dev": "nitro dev",
+		"prettier": "prettier --write ."
+	},
+	"dependencies": {
+		"fflate": "^0.8.2",
+		"minisearch": "^7.2.0"
+	},
+	"devDependencies": {
+		"@bergbok/prettier-config": "^1.1.0",
+		"@types/bun": "^1.3.0",
+		"h3": "^1.15.4",
+		"jerma-subtitle-search-types": "^1.0.0",
+		"nitropack": "^2.12.4",
+		"prettier": "^3.6.2",
+		"pretty-quick": "^4.2.2",
+		"simple-git-hooks": "^2.13.1"
+	}
+}
