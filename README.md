@@ -1,6 +1,6 @@
 Made to get rid of the need to download the subtitle index on the client before being able to search.
 
-Proof of concept. Not running anywhere.
+Proof of concept.
 
 Tried [Vercel fluid compute](https://vercel.com/fluid), didn't work because their [functions lifecycle](https://vercel.com/docs/functions#functions-lifecycle) causes the subtitle index to be loaded from scratch for most requests.  
 Tried [Coolify](https://coolify.io) on a `Raspberry Pi 4 Model B Rev 1.4 (2GB)`, didn't have enough memory.  
