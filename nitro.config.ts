@@ -4,7 +4,6 @@ import { defineNitroConfig } from 'nitropack/config';
 export default defineNitroConfig({
 	compatibilityDate: 'latest',
 	imports: false,
-	preset: 'vercel',
 	routeRules: {
 		'/search/**': {
 			cors: true,
