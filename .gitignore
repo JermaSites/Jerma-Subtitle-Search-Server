@@ -1,6 +1,8 @@
 /.nitro/
+/.stormkit/
 /.vercel/
 /.wrangler/
+/.zeabur/
 /artifacts/
 /build/
 /dist/
