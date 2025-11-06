@@ -5,11 +5,5 @@ const indexURL = 'https://subtitlefiles.jerma.io/file/jerma-subtitles/SubtitleIn
 
 export default defineNitroPlugin(async (_nitroApp) => {
 	console.log('Loading subtitles...');
-
-	try {
-		await loadSubtitles(indexURL);
-		console.log('Subtitles loaded successfully!');
-	} catch (error) {
-		console.error('Failed to load subtitles:', error);
-	}
+	loadSubtitles(indexURL).catch((err) => console.error('Loading subtitles failed:', err));
 });

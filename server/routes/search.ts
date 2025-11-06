@@ -1,4 +1,6 @@
 import { gzipSync } from 'fflate';
+import { waitUntil } from '@vercel/functions';
+import { loadSubtitles } from '../utils/subtitles';
 import { eventHandler, getQuery, createError, setResponseHeader } from 'h3';
 import { getLoadError, getSubtitles, isSubtitlesLoaded } from '../utils/subtitles';
 import type { SearchResult } from 'minisearch';
@@ -10,21 +12,28 @@ import type {
 	SubtitleMatch
 } from 'jerma-subtitle-search-types';
 
+const indexURL = 'https://subtitlefiles.jerma.io/file/jerma-subtitles/SubtitleIndex.json.gzip';
+
 export default eventHandler((event) => {
 	const startTime = performance.now();
 
 	if (!isSubtitlesLoaded()) {
-		const error = getLoadError();
-		if (error) {
+		const loadError = getLoadError();
+
+		if (loadError) {
 			throw createError({
 				statusCode: 500,
 				message: 'Subtitles failed to load',
-				data: { error: error.message }
+				data: { error: loadError.message }
 			});
 		}
+
+		waitUntil(loadSubtitles(indexURL));
+
+		setResponseHeader(event, 'Retry-After', 5);
 		throw createError({
 			statusCode: 503,
-			message: 'Subtitles are still loading, please try again in a moment'
+			message: 'Subtitles are loading, please retry in a few seconds'
 		});
 	}
 
