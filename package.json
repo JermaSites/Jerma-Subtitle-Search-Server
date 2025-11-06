@@ -19,6 +19,7 @@
 		"prettier": "prettier --write ."
 	},
 	"dependencies": {
+		"@vercel/functions": "^3.2.0",
 		"fflate": "^0.8.2",
 		"minisearch": "^7.2.0"
 	},
