@@ -1,13 +1,17 @@
 import MiniSearch from 'minisearch';
 import { gunzipSync } from 'fflate';
 import { useStorage } from 'nitropack/runtime';
+import type { AsPlainObject as MiniSearchIndex } from 'minisearch';
 
-let isLoading = false;
-let loadError: Error | null = null;
+const indexURL = 'https://subtitlefiles.jerma.io/file/jerma-subtitles/SubtitleIndex.json.gzip';
 let subtitles: MiniSearch | null = null;
+let loadError: Error | null = null;
+let isLoading = false;
 
-export async function loadSubtitles(source: string): Promise<void> {
-	if (subtitles || isLoading) return;
+export async function loadSubtitles(): Promise<void> {
+	if (isLoading) return;
+
+	console.log('Loading subtitles');
 
 	isLoading = true;
 	const startTime = performance.now();
@@ -15,18 +19,17 @@ export async function loadSubtitles(source: string): Promise<void> {
 	try {
 		let compressed: Uint8Array;
 
-		const localData = await useStorage('assets:jer,a').getItemRaw(
+		const localIndex = await useStorage('assets:jer,a').getItemRaw(
 			'SubtitleIndex.json.gzip'
 		);
 
-		if (localData) {
-			console.log('Using local asset file');
-			compressed = new Uint8Array(localData);
-			console.log(`Read ${compressed.length} bytes from local assets`);
+		if (localIndex) {
+			console.log('Using local index');
+			compressed = new Uint8Array(localIndex);
 		} else {
-			console.log('Local asset not available, fetching from URL...');
+			console.log('Local index not available, fetching from remote');
 
-			const response = await fetch(source);
+			const response = await fetch(indexURL);
 
 			if (!response.body) {
 				throw new Error('Response body is null');
@@ -51,14 +54,9 @@ export async function loadSubtitles(source: string): Promise<void> {
 			console.log(`Downloaded ${totalLength} bytes`);
 		}
 
-		console.log('Decompressing...');
 		const decompressed = gunzipSync(compressed);
-		console.log(`Decompressed to ${decompressed.length} bytes`);
+		const index = new TextDecoder().decode(decompressed) as unknown as MiniSearchIndex;
 
-		const text = new TextDecoder().decode(decompressed);
-		console.log(`Decoded to ${text.length} characters`);
-
-		console.log('Parsing subtitles...');
 		const minisearchOptions = {
 			autoVacuum: false,
 			fields: ['subtitles'],
@@ -77,19 +75,18 @@ export async function loadSubtitles(source: string): Promise<void> {
 			]
 		};
 
-		subtitles = MiniSearch.loadJSON(text, minisearchOptions);
+		subtitles = MiniSearch.loadJSON(index as unknown as string, minisearchOptions);
 
 		const duration = ((performance.now() - startTime) / 1000).toFixed(2);
-		console.log(`Subtitles loaded and parsed in ${duration} seconds.`);
 		console.log(
-			`Loaded ${subtitles.documentCount} documents with ${subtitles.termCount} unique terms.`
+			`Loaded subtitles in ${duration} seconds (${subtitles.documentCount} videos, ${subtitles.termCount} unique terms)`
 		);
 
 		isLoading = false;
 	} catch (error) {
 		isLoading = false;
 		loadError = error as Error;
-		console.error('Failed to load subtitles:', error);
+		console.error('Failed to load subtitles', error);
 		throw error;
 	}
 }

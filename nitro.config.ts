@@ -14,6 +14,9 @@ export default defineNitroConfig({
 			headers: { 'Access-Control-Allow-Origin': '*' }
 		}
 	},
+	scheduledTasks: {
+		'0 * * * *': ['subtitles:update']
+	},
 	serverAssets: [
 		{
 			baseName: 'jer,a',
