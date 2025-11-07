@@ -17,7 +17,7 @@
 		"build": "nitro build",
 		"dev": "nitro dev",
 		"prettier": "prettier --write .",
-		"preview": "bun run .output/server/index.mjs"
+		"preview": "node .output/server/index.mjs"
 	},
 	"dependencies": {
 		"fflate": "^0.8.2",

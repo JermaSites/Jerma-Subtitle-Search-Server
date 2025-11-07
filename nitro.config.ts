@@ -7,7 +7,6 @@ export default defineNitroConfig({
 		tasks: true
 	},
 	imports: false,
-	preset: 'bun',
 	routeRules: {
 		'/search/**': {
 			cors: true,
