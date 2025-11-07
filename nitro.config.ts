@@ -3,6 +3,9 @@ import { defineNitroConfig } from 'nitropack/config';
 // https://nitro.build/config
 export default defineNitroConfig({
 	compatibilityDate: 'latest',
+	experimental: {
+		tasks: true
+	},
 	imports: false,
 	preset: 'bun',
 	routeRules: {
