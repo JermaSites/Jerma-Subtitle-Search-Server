@@ -4,18 +4,19 @@ import { defineNitroConfig } from 'nitropack/config';
 export default defineNitroConfig({
 	compatibilityDate: 'latest',
 	imports: false,
+	preset: 'bun',
 	routeRules: {
 		'/search/**': {
 			cors: true,
 			headers: { 'Access-Control-Allow-Origin': '*' }
 		}
 	},
-	srcDir: 'server',
 	serverAssets: [
 		{
 			baseName: 'jer,a',
 			dir: './resources',
 			ignore: ['SubtitleIndex.json.gzip']
 		}
-	]
+	],
+	srcDir: 'server'
 });
