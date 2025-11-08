@@ -222,8 +222,8 @@ export default eventHandler((event) => {
 			duration: result.duration,
 			thumbnail: result.thumbnail,
 			upload_date: result.upload_date,
-			stream_title: result.stream_title,
-			stream_date: result.stream_date,
+			...(result.stream_title && { stream_title: result.stream_title }),
+			...(result.stream_date && { stream_date: result.stream_date }),
 			subtitle_filename: result.subtitle_filename,
 			matches: subtitleMatches
 		};
