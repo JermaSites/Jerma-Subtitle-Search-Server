@@ -8,6 +8,9 @@ export default defineNitroConfig({
 	},
 	imports: false,
 	routeRules: {
+		'/': {
+			redirect: { to: '/status', statusCode: 301 }
+		},
 		'/search/**': {
 			cors: true,
 			headers: { 'Access-Control-Allow-Origin': '*' }
