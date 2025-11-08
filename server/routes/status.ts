@@ -1,12 +1,11 @@
 import { eventHandler } from 'h3';
+import { getUptime } from '../utils/time';
 import { currentVersion } from '..//utils/version';
 import { getLoadError, isSubtitlesLoaded } from '../utils/subtitles';
 
-const startupTime = Date.now();
-
 export default eventHandler((_event) => {
 	return {
-		uptimeSeconds: parseFloat(((Date.now() - startupTime) / 1000).toFixed(2)),
+		uptimeSeconds: parseFloat((getUptime() / 1000).toFixed(2)),
 		subtitlesLoaded: isSubtitlesLoaded(),
 		...(isSubtitlesLoaded() && { subtitlesVersion: currentVersion }),
 		...(getLoadError() && { loadError: getLoadError() }),
