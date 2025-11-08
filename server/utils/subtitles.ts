@@ -51,7 +51,7 @@ export async function loadSubtitles(): Promise<void> {
 				compressed.set(chunk, offset);
 				offset += chunk.length;
 			}
-			console.log(`Downloaded ${totalLength} bytes`);
+			console.log(`Downloaded ${(totalLength / 1024 / 1024).toFixed(2)} MiB`);
 		}
 
 		const decompressed = gunzipSync(compressed);
