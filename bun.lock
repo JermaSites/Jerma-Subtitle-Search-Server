@@ -11,7 +11,7 @@
         "@bergbok/prettier-config": "^1.1.0",
         "@types/bun": "^1.3.2",
         "h3": "^1.15.4",
-        "jerma-subtitle-search-types": "^1.0.0",
+        "jerma-subtitle-search-types": "^1.0.1",
         "nitropack": "^2.12.9",
         "prettier": "^3.6.2",
         "pretty-quick": "^4.2.2",
@@ -474,7 +474,7 @@
 
     "jackspeak": ["jackspeak@3.4.3", "", { "dependencies": { "@isaacs/cliui": "^8.0.2" }, "optionalDependencies": { "@pkgjs/parseargs": "^0.11.0" } }, "sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw=="],
 
-    "jerma-subtitle-search-types": ["jerma-subtitle-search-types@1.0.0", "", { "peerDependencies": { "typescript": "^5" } }, "sha512-XezBIl016PrWb6Gq93wLxDCLdYaFgpVHdNf0Yq8/2bwNoA9SkCPBo/ijkd+UchHxKIKGhn9vYY/FPjyNqOh8DQ=="],
+    "jerma-subtitle-search-types": ["jerma-subtitle-search-types@1.0.1", "", { "peerDependencies": { "typescript": "^5" } }, "sha512-TYyPQEwOvXRhcZG2DMGflf6FETXhlaIkVIzjOL6znV8BI03FjtqjHvntgm1NSZejPN4xWRg4M2q6i/HZ8yvdKg=="],
 
     "jiti": ["jiti@2.6.1", "", { "bin": { "jiti": "lib/jiti-cli.mjs" } }, "sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ=="],
 
