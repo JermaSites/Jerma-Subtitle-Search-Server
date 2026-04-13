@@ -27,7 +27,7 @@
 		"@bergbok/prettier-config": "^1.1.0",
 		"@types/bun": "^1.3.11",
 		"h3": "^1.15.11",
-		"jerma-subtitle-search-types": "^1.0.1",
+		"jerma-subtitle-search-types": "^1.0.2",
 		"nitropack": "^2.13.3",
 		"prettier": "^3.8.1",
 		"pretty-quick": "^4.2.2",
